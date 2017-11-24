@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <ul>
+      <li><%= link_to "All Resources", categories_path %></li>
+      <li><%= link_to "Create a Resource", new_resource_path %></li>
+    </ul>
+
   	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
