@@ -23,7 +23,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
+    config.cachape_store = :null_store
   end
 
   # Don't care if the mailer can't send.
@@ -54,5 +54,6 @@ Rails.application.configure do
 
   #default url options, as instructed by devise. 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp 
 
 end
