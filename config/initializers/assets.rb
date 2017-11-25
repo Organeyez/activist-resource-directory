@@ -14,4 +14,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 #how to configure with devise and heroku
-config.assets.initialize_on_precompile = false
+Rails.application.config.assets.initialize_on_precompile = false
