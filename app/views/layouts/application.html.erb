@@ -3,19 +3,20 @@
   <head>
     <title>ActivistResourceDirectory</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <ul>
       <li><%= link_to "Home", categories_path %></li>
       <% if user_signed_in? %>
-        <p>Hello <%= current_user.username %> - <%= link_to "Logout", destroy_user_session_path, method: 'DELETE'%></p>  
+        <p>Hello <%= current_user.username %></p>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
+        <li><%= link_to "Settings", edit_user_registration_path %></li>
+        <li><%= link_to "Create a Resource", new_resource_path %></li>
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Login", new_user_session_path %></li>
       <% end %>
-
-
     </ul>
 
   	<p class="notice"><%= notice %></p>
