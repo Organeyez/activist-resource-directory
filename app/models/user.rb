@@ -6,12 +6,13 @@ class User < ApplicationRecord
 	has_many :reviews, foreign_key: :author_id 
 
 
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
-	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, :validatable
-
 	validates :username, :email, :password, presence: true 
 	validates :username, :email, uniqueness: true 
+
+	# Include default devise modules. Others available are:
+	# :timeoutable and :omniauthable
+	devise :database_authenticatable, :registerable,
+	     :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
+
 
 end

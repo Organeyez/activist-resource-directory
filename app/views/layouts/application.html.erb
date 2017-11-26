@@ -10,8 +10,12 @@
 
   <body>
     <ul>
-      <li><%= link_to "All Resources", categories_path %></li>
-      <li><%= link_to "Create a Resource", new_resource_path %></li>
+      <li><%= link_to "Home", categories_path %></li>
+      <% if user_signed_in? %>
+        <p>Hello <%= current_user.username %> - <%= link_to "Logout", destroy_user_session_path, method: 'DELETE'%></p>  
+      <% end %>
+
+
     </ul>
 
   	<p class="notice"><%= notice %></p>
