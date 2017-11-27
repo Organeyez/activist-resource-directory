@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :resources 
 
     resources :tags, only: [:create]
-    resources :post_tags, only: [:create, :destroy]
+    resources :resource_tags, only: [:create, :destroy]
 
     #reviews 
     resources :reviews
