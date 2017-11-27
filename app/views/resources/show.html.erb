@@ -1,5 +1,16 @@
 <h1>Resource Show</h1>
 
+
+<% if @resource.fans.include?(current_user) %>
+	<%= link_to favorite_path(resource_id: @resource.id), method: "DELETE" do %>
+	  <i><%= image_tag("red-heart", class: "fav-btn")%></i>
+	<% end %>
+<% else %>
+	<%= link_to favorites_path(resource_id: @resource.id), method: "POST" do %>
+	  <i><%= image_tag("empty-heart", class: "fav-btn")%></i>
+	<% end %>
+<% end %>
+
 <p>Title: <%= @resource.title %></p>
 <p><%= link_to "Resource Link", "#{@resource.url}", target: "_blank" %></p>
 <p>Description: <%= @resource.description %></p>
