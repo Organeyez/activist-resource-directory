@@ -1,7 +1,7 @@
 class CreateTag < ActiveRecord::Migration[5.1]
   def change
     create_table :tags do |t|
-    	t.string			:title
+    	t.string			:name
 
     	t.timestamps
     end
