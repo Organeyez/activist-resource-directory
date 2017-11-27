@@ -1,0 +1,6 @@
+<h1>Resource Show</h1>
+
+<p>Title: <%= @resource.title %></p>
+<p><%= link_to "Resource Link", "http://#{@resource.url}", target: "_blank" %></p>
+<p>Description: <%= @resource.description %></p>
+<p>Category: <%= @resource.category.title %></p>
