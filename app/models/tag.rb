@@ -1,5 +1,6 @@
 class Tag < ApplicationRecord
 	has_many :resource_tags 
 
-	validates :title, presence: true 
+	validates :name, presence: true 
+	validates :name, uniqueness: true 
 end

@@ -6,7 +6,46 @@
 <p>Category: <%= @resource.category.title %></p>
 
 
+<% if @resource.author == current_user %>
+	<div class="tag-box">
+		<% @resource.tags.each do |tag| %>
+			<span class="single-tag-box"><%= link_to "x ", resource_tag_path(tag, resource_id: @resource.id), method: "DELETE" %><%= tag.name %></span>
+		<% end %>
+	</div>
+<% else%>
+	<div class="tag-box">
+		<% @resource.tags.each do |tag| %>
+			<span class="single-tag-box"><%= tag.name %></span>
+		<% end %>
+	</div>
+<% end %>
 
-<button><%= link_to "Edit Resource", edit_resource_path(@resource) %></button>
 
-<button><%= link_to "Delete Resource", resource_path(@resource), method: "DELETE" %></button>
+
+
+
+
+
+
+<% if @resource.author == current_user %>
+	
+	<div class="add-tags-box">
+		<p>Add Tags to Your Resource</p>
+
+		<%= form_for @tag, as: :tag, url: tags_path, html: {id: "tag_form" } do |f| %>
+			<div>
+				<%= f.label "Tag Name" %>
+				<%= f.text_field :name %>
+				<%= f.hidden_field :resource_id, value: @resource.id %>
+		  		<%= f.submit "Create" %>
+			</div>
+		<% end %>
+	</div>
+
+	<div>
+		<button><%= link_to "Edit Resource", edit_resource_path(@resource) %></button>
+
+		<button><%= link_to "Delete Resource", resource_path(@resource), method: "DELETE" %></button>	
+	</div>
+
+<% end %>
