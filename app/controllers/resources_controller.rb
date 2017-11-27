@@ -24,12 +24,27 @@ class ResourcesController < ApplicationController
 	end
 
 	def edit
+		@resource = Resource.find(params[:id])
+		@categories = Category.all
 	end
 
 	def update
+		@categories = Category.all
+		@resource = Resource.find(params[:id])
+		@resource.update_attributes(resource_params)
+
+		if @resource.save
+			redirect_to resource_path(@resource), notice: "Resource was successfully updated"
+		else
+			@errors = @resource.errors.full_messages
+			render :edit
+		end
 	end
 
-	def delete
+	def destroy
+		@resource = Resource.find(params[:id])
+		@resource.destroy
+		redirect_to user_path(current_user), notice: "Resource was successfully destroyed" 
 	end
 
 	private

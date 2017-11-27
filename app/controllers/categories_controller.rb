@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 
 	def show
 		@category = Category.find(params[:id])
+		@resources = @category.resources
 	end
 
 #for admin use only 

@@ -9,7 +9,7 @@ User.destroy_all
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-categories = ["Psychology", "Economics", "Politics", "History", "Laws & The Constitution", "Education", "Legal Support", "Fundraising", "Technology", "Medicine", "Environmental Studies", "Gender", "Sexuality", "Organization Building", "Transportation", "Finance", "Business", "Family & Parenting", "Housing", "Personal Development", "Spirituality & Religion", "Scholarships", "Miscellaneous"]
+categories = ["Mental Health & Psychology", "Labor & Economics", "Politics", "History", "Laws & The Constitution", "Schools & Education", "Legal Support", "Fundraising", "Technology", "Medicine", "Environmental Science/Environmental Issues", "Gender", "Sexuality", "Organization Building", "Transportation", "Finance", "Business", "Family & Parenting", "Housing", "Personal Development", "Spirituality" " Religion", "Scholarships", "Miscellaneous", "International Affairs", "Human Trafficking", "Criminal Justice", "Prisons", "Drugs", "Race & Ethnicity"]
 
 categories.each do |category|
 	Category.create(title: category)
