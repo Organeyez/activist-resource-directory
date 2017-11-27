@@ -1,6 +1,12 @@
 <h1>Resource Show</h1>
 
 <p>Title: <%= @resource.title %></p>
-<p><%= link_to "Resource Link", "http://#{@resource.url}", target: "_blank" %></p>
+<p><%= link_to "Resource Link", "#{@resource.url}", target: "_blank" %></p>
 <p>Description: <%= @resource.description %></p>
 <p>Category: <%= @resource.category.title %></p>
+
+
+
+<button><%= link_to "Edit Resource", edit_resource_path(@resource) %></button>
+
+<button><%= link_to "Delete Resource", resource_path(@resource), method: "DELETE" %></button>
