@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
     #resources & tags  
     resources :resources 
-
+    resources :favorites, only: [:create, :destroy]
     resources :tags, only: [:create]
     resources :resource_tags, only: [:create, :destroy]
 
