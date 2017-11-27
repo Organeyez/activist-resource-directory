@@ -1,0 +1,21 @@
+<%= form_for @resource, url: {action: "update"}, html: {class: "resource_form"} do |f| %>
+	<div>
+		<%= f.label "Title" %>
+		<%= f.text_field :title, size: "80x2" %>
+	</div>
+	<div>
+		<%= f.label "Url" %>
+		<%= f.text_area :url, size: "80x2" %>
+	</div>
+	<div>
+		<%= f.label "Description" %>
+		<%= f.text_area :description, size: "80x12" %>
+	</div>
+	<div>
+		<%= f.label "Select a Category"%>
+		<%= f.select :category_id, options_from_collection_for_select(@categories, 'id', 'title')%>
+	</div>
+  	<%= f.submit "Update" %>
+<% end %>
+
+<%= link_to 'Back', resource_path(@resource) %>
