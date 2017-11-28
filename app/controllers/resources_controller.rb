@@ -6,6 +6,7 @@ class ResourcesController < ApplicationController
 	def show
 		@resource = Resource.find(params[:id])
 		@tag = Tag.new 
+		@review = Review.new 
 	end
 
 	def new
@@ -21,7 +22,6 @@ class ResourcesController < ApplicationController
 			@errors = @resource.errors.full_messages
 			render :new, status: 422
 		end
-
 	end
 
 	def edit
