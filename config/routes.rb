@@ -22,6 +22,8 @@ Rails.application.routes.draw do
         resources :favorites, only: [:index, :create, :destroy]
     end
 
+    get 'admin' => 'control_panel#index', :as => :admin
+    resources :control_panel, only: [:index, :new, :create, :destroy]
 
 
     #resources & tags  

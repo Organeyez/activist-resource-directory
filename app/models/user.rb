@@ -6,8 +6,9 @@ class User < ApplicationRecord
 	has_many :reviews, foreign_key: :author_id 
 
 
-	validates :username, :email, :password, presence: true 
+	validates :username, :email, :password, :admin, presence: true 
 	validates :username, :email, uniqueness: true 
+	validates_inclusion_of :admin, in: [true, false]
 
 	# Include default devise modules. Others available are:
 	# :timeoutable and :omniauthable
