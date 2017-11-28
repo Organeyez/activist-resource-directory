@@ -68,6 +68,6 @@ Rails.application.configure do
   # }
 
   #default url options, as instructed by devise. 
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'heroku.com' }
 
 end
