@@ -1,0 +1,30 @@
+<%= form_for @review, url: {action: "update"}, html: {class: "review_form"} do |f| %>
+	<div>
+		<%= f.hidden_field :author_id, value: current_user.id %>
+		<%= f.hidden_field :resource_id, value: @resource.id %>
+	</div>
+	<div>
+		<%= f.label "Does the resource provide supporting evidence?" %>
+		<%= f.select :evidence_rating, [1, 2, 3, 4, 5] %>
+	</div>
+	<div>
+		<%= f.label "How useful was this resource?" %>
+		<%= f.select :useful_rating, [1, 2, 3, 4, 5] %>
+	</div>
+	<div>
+		<%= f.label "How detailed is this resource?" %>
+		<%= f.select :detail_rating, [1, 2, 3, 4, 5] %>
+	</div>
+	<div>
+		<%= f.label "Would you recommend this resource to others?" %>
+		<%= f.select :recommend_rating, [1, 2, 3, 4, 5] %>
+	</div>
+	<div>
+		<%= f.label "Message" %>
+		<%= f.text_area :message, size: "60x12" %>
+	</div>
+
+  	<%= f.submit "Update" %>
+<% end %> 
+
+<%= link_to 'Back', resource_path(@resource) %>
