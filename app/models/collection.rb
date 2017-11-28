@@ -2,8 +2,8 @@ class Collection < ApplicationRecord
 	belongs_to :owner, class_name: "User"
 
 	has_many   :collection_resources
-	has_many   :favorites, through: :collection_resources
-	has_many   :resources, through: :favorites, source: :resource 
+	has_many   :resources, through: :collection_resources, source: :resource
 
 	validates  :name, :owner_id, presence: true 
+	validates  :name, length: { maximum: 20 }
 end

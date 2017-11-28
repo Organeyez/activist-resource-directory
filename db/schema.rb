@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20171124220819) do
 
   create_table "collection_resources", force: :cascade do |t|
     t.bigint "collection_id", null: false
-    t.bigint "favorite_id", null: false
+    t.bigint "resource_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["collection_id"], name: "index_collection_resources_on_collection_id"
-    t.index ["favorite_id"], name: "index_collection_resources_on_favorite_id"
+    t.index ["resource_id"], name: "index_collection_resources_on_resource_id"
   end
 
   create_table "collections", force: :cascade do |t|

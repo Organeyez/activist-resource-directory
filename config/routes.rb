@@ -16,13 +16,16 @@ Rails.application.routes.draw do
         get 'users/:id' => 'users#show'
     end
 
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+        resources :collections
+        resources :collection_resources 
+        resources :favorites, only: [:index, :create, :destroy]
+    end
 
 
 
     #resources & tags  
     resources :resources 
-    resources :favorites, only: [:create, :destroy]
     resources :tags, only: [:create]
     resources :resource_tags, only: [:create, :destroy]
 
