@@ -1,5 +1,25 @@
-<h1>Categories Index</h1>
+<div class="container">
+  <div class="row">
 
-<% @categories.each do |category|%>
-	<li><%= link_to "#{category.title}", category_path(category) %></li>
-<% end%>
+    <div class="col home-intro-col">
+		<div id="home-intro">
+			<p>Your Activist Resource Directory is a platform for activists and community organizers to share resources. All resources are accessible to the public.</p>
+			<p>Upon creating an account you will be able to</p>
+			<ol>
+				<li>Create a resource</li>
+				<li>Favorite a resource</li>
+				<li>Organize your favorite resources into collections that you can access at any time</li>		
+			</ol>
+		</div>
+    </div>
+
+    <div class="col">
+		<div id="category-list">
+			<% @categories.each do |category|%>
+				<li><%= link_to "#{category.title}", category_path(category) %></li>
+			<% end%>
+		</div>
+    </div>
+
+  </div>
+</div>
