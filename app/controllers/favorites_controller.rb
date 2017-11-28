@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
 
   def index
-     @favorited_resources = current_user.resources_favorited
+     @favorited_resources = current_user.favorited_resources
   end
 
   def create
