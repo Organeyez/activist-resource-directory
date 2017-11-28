@@ -1,0 +1,13 @@
+<h1>Collections Index</h1>
+
+<%= link_to "Add Collection", new_user_collection_path %>
+
+<div>
+	<% current_user.collections.each do |collection| %>
+		<div>
+			<%= link_to "#{collection.name}", user_collection_path(id: collection.id) %>
+		</div>
+	<% end %>	
+</div>
+
+ 
