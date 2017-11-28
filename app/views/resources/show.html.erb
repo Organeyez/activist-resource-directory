@@ -16,6 +16,8 @@
 <p>Description: <%= @resource.description %></p>
 <p>Category: <%= @resource.category.title %></p>
 
+<p>Total Fans: <%= @resource.total_fans %></p>
+
 
 <% if @resource.author == current_user %>
 	<div class="tag-box">
