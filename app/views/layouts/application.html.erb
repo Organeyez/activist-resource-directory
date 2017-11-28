@@ -9,25 +9,31 @@
   </head>
 
   <body>
-    <ul>
-      <li><%= link_to "All Resources", categories_path %></li>
-      <% if user_signed_in? %>
-        <p>Hello <%= current_user.username %></p>
-        <li><%= link_to "Homepage", user_path(current_user) %></li>
-        <li><%= link_to "Create a Resource", new_resource_path %></li>
-        <li><%= link_to "Settings", edit_user_registration_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
-      <% else %>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
-      <% end %>
-    </ul>
-
+    <nav class="navbar">
+      <ul class="nav">
+          <%= link_to "YARD", categories_path, class: "navbar-brand logo" %>
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to "Homepage", user_path(current_user), class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to "Create a Resource", new_resource_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to "Settings", edit_user_registration_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link active" %></li>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link active" %></li>        
+        <% end %>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
+      </form>        
+    </nav>
 
     <%= render "layouts/errors" %>
-    
-  	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div>
+    	<p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>      
+    </div>
     <%= yield %>
   </body>
 </html>

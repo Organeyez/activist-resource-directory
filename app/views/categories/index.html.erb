@@ -3,7 +3,11 @@
 
     <div class="col home-intro-col">
 		<div id="home-intro">
-			<p>Your Activist Resource Directory is a platform for activists and community organizers to share resources. All resources are accessible to the public.</p>
+			<div id="heading">
+	    		<h1>Your Activist Resource Directory</h1>	
+	    	</div>
+			<p>A platform for activists and community organizers to share resources.</p>
+			<p>All resources are available to the public</p>
 			<p>Upon creating an account you will be able to</p>
 			<ol>
 				<li>Create a resource</li>
@@ -16,7 +20,7 @@
     <div class="col">
 		<div id="category-list">
 			<% @categories.each do |category|%>
-				<li><%= link_to "#{category.title}", category_path(category) %></li>
+				<li class="category-li"><%= link_to "#{category.title}", category_path(category) %></li>
 			<% end%>
 		</div>
     </div>

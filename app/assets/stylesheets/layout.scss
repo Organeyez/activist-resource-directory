@@ -1,0 +1,28 @@
+body{
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.nav-link{
+	color: white;
+	font-size: 20px;
+}
+
+.logo{
+	font-size: 50px;
+	color: white;
+}
+
+.btn-outline{
+	border: 2px solid #0066cc;
+}
+
+.navbar{
+	border: 20px solid #0066cc;
+	background-color: black;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	box-shadow: 0px 10px 10px #888888;
+}
