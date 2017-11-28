@@ -8,7 +8,7 @@ class Resource < ApplicationRecord
 	has_many	:favorites
 	has_many	:fans, through: :favorites 
 	has_many	:reviews 
-	has_many	:reviewers, through: :reviews, source: :user
+	has_many	:reviewers, through: :reviews, source: :author
 
 	validates :title, :description, :url, :author_id, :category_id, presence: true 
 end
