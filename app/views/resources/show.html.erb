@@ -44,7 +44,7 @@
 					<%= f.label "Tag Name" %>
 					<%= f.text_field :name %>
 					<%= f.hidden_field :resource_id, value: @resource.id %>
-			  		<%= f.submit "Create" %>
+			  		<%= f.submit "Add" %>
 				</div>
 			<% end %>
 			<button class="edit-btn"><%= link_to "Edit Resource", edit_resource_path(@resource) %></button>

@@ -34,7 +34,8 @@
     	<p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>      
     </div>
-
+  
+ <% if user_signed_in? %>
     <header>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item"><%= link_to "My Created Resources", user_path(current_user), class: "nav-link active" %></li>
@@ -42,7 +43,7 @@
         <li class="nav-item"><%= link_to "My Favorites", user_favorites_path(current_user), class: "nav-link active" %></li>
       </ul>
     </header>
-
+<% end %>
     <%= yield %>
   </body>
 </html>
