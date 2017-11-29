@@ -18,6 +18,11 @@ class ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     @resource = Resource.find(@review.resource_id)
+    respond_to do |f|
+       f.html { render :edit}
+       f.json { render json: @review.to_json }
+       f.js
+    end 
   end
 
   def update

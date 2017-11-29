@@ -8,6 +8,11 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @collection_resource = CollectionResource.new 
     @resources = @collection.resources 
+    respond_to do |f|
+       f.html { render :show}
+       f.json { render json: @resources.to_json}
+       f.js
+    end 
   end
 
   def new
@@ -18,7 +23,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(collection_params)
 
     if @collection.save
-      redirect_to user_collections_path(current_user), notice: "Your Collection was successfully created"
+      redirect_to user_collections_path(current_user), notice: "Your collection was successfully created"
     else
       @errors = @collection.errors.full_messages 
       render :new 
@@ -27,12 +32,18 @@ class CollectionsController < ApplicationController
 
   def edit
     @collection = Collection.find(params[:id])
+    respond_to do |f|
+       f.html { render :edit}
+       f.json { render json: @collection.to_json}
+       f.js
+    end 
   end
 
   def update
     @collection = Collection.find(params[:id])
+    @collection.update_attributes(collection_params)
     if @collection.save
-      redirect_to user_collection_path(@collection), notice: "Collection was successfully updated"
+      redirect_to request.referer, notice: "Collection was successfully updated"
     else
       @errors = @collection.errors.full_messages
       render :edit

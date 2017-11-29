@@ -1,21 +1,39 @@
-<%= form_for @resource, url: {action: "update"}, html: {class: "resource_form"} do |f| %>
-	<div>
-		<%= f.label "Title" %>
-		<%= f.text_field :title, size: "80x2" %>
-	</div>
-	<div>
-		<%= f.label "Url" %>
-		<%= f.text_area :url, size: "80x2" %>
-	</div>
-	<div>
-		<%= f.label "Description" %>
-		<%= f.text_area :description, size: "80x12" %>
-	</div>
-	<div>
-		<%= f.label "Select a Category"%>
-		<%= f.select :category_id, options_from_collection_for_select(@categories, 'id', 'title')%>
-	</div>
-  	<%= f.submit "Update" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-4 new-resource-directions">
+		<h3 class="form-heading">Guidelines</h3>
+		<p>Adding a resource simply means providing a link and a description of the resource that the link connects us to. Before adding a resource please ensure that the resource does the following:</p>
+		<ul>
+			<li>Provides detailed and thorough information</li>
+			<li>Includes supporting evidence and/or references to sources</li>
+			<li>Belongs to an author, publication, or website that can be verified or contacted for further information</li>
+		</ul>
+		<p>Within your description, please provide a brief objective summary of the resource rather than an opinion or review. </p>	
+		<p>Resources shared here must be FREE to the public</p>
 
-<%= link_to 'Back', resource_path(@resource) %>
+		<%= link_to 'Back', resource_path(@resource) %>
+    </div>
+    <div class="col-8 new-resource-form">
+	    <h3 class="form-heading">New Resource Form</h3>
+		<%= form_for @resource, url: {action: "update"}, html: {class: "resource_form"} do |f| %>
+			<div class="res-input">
+				<%= f.label "Title (Max 100 characters)" %><br/>
+				<%= f.text_field :title, size: "80x2" %>
+			</div>
+			<div class="res-input">
+				<%= f.label "Url (copy and paste the exact web address including the http:// part at the beginning or else your link may not work)" %><br/>
+				<%= f.text_area :url, size: "80x2" %>
+			</div>
+			<div class="res-input">
+				<%= f.label "Description (Max 600 characters)" %><br/>
+				<%= f.text_area :description, size: "80x12" %>
+			</div>
+			<div class="res-input">
+				<%= f.label "Select a Category"%>
+				<%= f.select :category_id, options_from_collection_for_select(@categories, 'id', 'title')%>
+			</div>
+		  	<%= f.submit "Update" %>
+		<% end %>
+    </div>
+  </div>
+</div>

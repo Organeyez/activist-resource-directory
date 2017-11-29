@@ -1,7 +1,12 @@
 class FavoritesController < ApplicationController
 
   def index
-     @favorited_resources = current_user.favorited_resources
+    @favorited_resources = current_user.favorited_resources
+    respond_to do |f|
+       f.html { render :index}
+       f.json { render json: @favorited_resources.to_json}
+       f.js
+    end 
   end
 
   def create
