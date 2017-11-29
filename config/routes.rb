@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     as :user do  
         get 'users/sign_out' => 'users/sessions#destroy'
         get 'users/settings' => 'users#edit'
-        get 'users/:id' => 'users#show'
     end
 
     resources :users, only: [:show] do

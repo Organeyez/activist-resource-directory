@@ -13,7 +13,7 @@ class Resource < ApplicationRecord
 
 	validates :title, :description, :url, :author_id, :category_id, presence: true 
 	validates :title, length: { maximum: 100 }
-	validates :description, length: { maximum: 600 }
+	validates :description, length: { maximum: 1000 }
 
 	def total_fans
 		self.fans.count 
