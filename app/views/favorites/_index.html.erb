@@ -1,8 +1,6 @@
-<h3>resources I have favorited</h3>
-
 <div>
 	<% @favorited_resources.each do |resource|%>
-		<div class="list-of-resources">
+		<div class="favorites-list">
 			<li><%= link_to resource.title, resource_path(resource) %></li>
 			<li><%= resource.description %></li>	
 		</div>

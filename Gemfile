@@ -7,7 +7,11 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+#user registration and authentication
 gem 'devise'
+#jquery
+gem 'jquery-rails'
+#rails 
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

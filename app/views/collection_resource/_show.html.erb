@@ -1,0 +1,5 @@
+<div class="collection-resource">
+	<li><%= link_to resource.title, resource_path(resource) %></li>
+	<li><%= resource.description %></li>
+	<button><%= link_to "Remove", user_collection_resource_path(resource_id: resource.id, collection_id: @collection.id), method: "DELETE" %></button>	
+</div>

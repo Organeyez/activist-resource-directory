@@ -2,12 +2,22 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = current_user.collections
+    respond_to do |f|
+       f.html { render :index}
+       f.json { render json: @collections.to_json}
+       f.js
+    end 
   end
 
   def show
     @collection = Collection.find(params[:id])
     @collection_resource = CollectionResource.new 
     @resources = @collection.resources 
+    respond_to do |f|
+       f.html { render :show}
+       f.json { render json: @resources.to_json}
+       f.js
+    end 
   end
 
   def new
