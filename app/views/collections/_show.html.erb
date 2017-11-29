@@ -1,14 +1,14 @@
 <h1 class="collection-heading"><%= @collection.name %></h1>	
 
 <div class="collection-buttons">
-	<button><%= link_to "Edit Collection", edit_user_collection_path(@collection) %></button>
+	<button><%= link_to "Edit Collection", edit_user_collection_path(@collection), remote: true %></button>
 	<button><%= link_to "Delete Collection", user_collection_path(@collection), method: "DELETE" %></button>	
 </div>
 
 <div class="add-resource-to-collection-box">
 	<%= form_for @collection_resource, as: :collection_resource, url: user_collection_resources_path, html: {id: "collection-resource-form" } do |f| %>
 		<div>
-			<%= f.label "Select from your favorites below to add to this collection "%>
+			<%= f.label "Add one of your favorites to this collection", class: "blue" %>
 			<%= f.select :resource_id, options_from_collection_for_select(current_user.favorited_resources, "id", "title")%>
 		</div>
 			<%= f.hidden_field :collection_id, value: @collection.id %>

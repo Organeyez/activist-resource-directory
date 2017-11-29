@@ -1,11 +1,8 @@
-<ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item"><%= link_to "My Created Resources", user_path(current_user), class: "nav-link active", remote: true %></li>
-  <li class="nav-item"><%= link_to "My Collections", user_collections_path(current_user), class: "nav-link active", remote: true %></li>
-  <li class="nav-item"><%= link_to "My Favorites", user_favorites_path(current_user), class: "nav-link active", remote: true %></li>
-</ul>
-
-<div class="homepage-display">
-	
+<div>
+	<% @resources.each do |resource| %>
+		<div class="list-of-resources">
+			<li><%= link_to resource.title, resource_path(resource) %></li>
+			<li><%= resource.description %></li>
+		</div>
+	<% end %>
 </div>
-
-

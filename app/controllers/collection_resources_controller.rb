@@ -4,10 +4,10 @@ class CollectionResourcesController < ApplicationController
     @collection = current_user.collections.find(params[:collection_resource][:collection_id])
     @collection_resource = @collection.collection_resources.create(collection_resource_params)
     if @collection_resource.save
-      redirect_to request.referer, notice: 'Resource was not added to this collection'
+      redirect_to request.referer, notice: 'Resource was successfully added to this collection'
     else
       @errors = @collection_resource.errors.full_messages 
-      redirect_to request.referer, notice: 'Resource was successfully added to this collection'
+      redirect_to request.referer, notice: 'Resource was NOT added to this collection'
     end
   end
 
