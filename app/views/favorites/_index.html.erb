@@ -1,8 +1,0 @@
-<div>
-	<% @favorited_resources.each do |resource|%>
-		<div class="favorites-list">
-			<li><%= link_to resource.title, resource_path(resource) %></li>
-			<li><%= resource.description %></li>	
-		</div>
-	<% end  %>
-</div>
