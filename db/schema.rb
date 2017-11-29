@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20171124220819) do
 
   create_table "resources", force: :cascade do |t|
     t.string "title", null: false
-    t.text "url", default: "There is no link attached to this resource"
+    t.text "url", null: false
     t.text "description", null: false
     t.bigint "author_id", null: false
     t.bigint "category_id", null: false
