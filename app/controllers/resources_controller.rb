@@ -16,8 +16,9 @@ class ResourcesController < ApplicationController
 
 	def create
 		@resource = current_user.posted_resources.new(resource_params)
+		@categories = Category.all 
 		if @resource.save
-			redirect_to resource_path(@resource), notice: "Your Resource was successfully created"
+			redirect_to resource_path(@resource), notice: "Your Resource was successfully created. Please double-check that your link works correctly"
 		else
 			@errors = @resource.errors.full_messages
 			render :new, status: 422
