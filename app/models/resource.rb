@@ -13,8 +13,23 @@ class Resource < ApplicationRecord
 
 	validates :title, :description, :url, :author_id, :category_id, presence: true 
 	validates :title, length: { maximum: 100 }
+	validates :description, length: { maximum: 600 }
 
 	def total_fans
 		self.fans.count 
 	end
+
+	def average_rating
+		sum = 0 
+		count = self.reviews.length 
+		self.reviews.each do |review|
+			sum += review.rating_number 
+		end
+		if count > 0
+			"#{sum/count}/5 Average Rating" 
+		else 
+			"No ratings yet"
+		end
+	end
+
 end
