@@ -6,6 +6,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
+    @user = @collection.owner 
     @collection_resource = CollectionResource.new 
     @resources = @collection.resources 
     respond_to do |f|
