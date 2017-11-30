@@ -1,19 +1,21 @@
 <div class="container resource-show">
 	<h3><%= @resource.title %></h3>
 
-	<% if @resource.fans.include?(current_user) %>
-	<%= link_to user_favorite_path(resource_id: @resource.id, user_id: current_user), method: "DELETE" do %>
-		  <i><%= image_tag("red-heart", class: "fav-btn")%></i>
-		<% end %>
-	<% else %>
-		<%= link_to user_favorites_path(resource_id: @resource.id, user_id: current_user), method: "POST" do %>
-		  <i><%= image_tag("empty-heart", class: "fav-btn")%></i>
+	<% if user_signed_in? %>
+		<% if @resource.fans.include?(current_user) %>
+		<%= link_to user_favorite_path(resource_id: @resource.id, user_id: current_user), method: "DELETE" do %>
+			  <i><%= image_tag("red-heart", class: "fav-btn")%></i>
+			<% end %>
+		<% else %>
+			<%= link_to user_favorites_path(resource_id: @resource.id, user_id: current_user), method: "POST" do %>
+			  <i><%= image_tag("empty-heart", class: "fav-btn")%></i>
+			<% end %>
 		<% end %>
 	<% end %>
-
 	<p>Description: <%= @resource.description %>
 	<span><%= link_to "Link to Resource", "#{@resource.url}", target: "_blank" %></span></p>
 	<p>Category: <%= @resource.category.title %></p>
+	<p>Author: <%= link_to "#{@resource.author.username}", user_path(@resource.author) %></p>
 
 	<p>Total Fans: <%= @resource.total_fans %></p>
 	<p><%= @resource.average_rating %> </p>
@@ -58,43 +60,44 @@
 	<% end %>	
 	</div>	
 
-
 	<div class="review-box">
 		<h3 class="review-header">Reviews</h3>
-		<% if !@resource.reviewers.include?(current_user) %>
-			<div>
-				<p>Leave a Review</p>
-				<%= form_for @review, as: :review, url: reviews_path, html: {class: "review_form"} do |f| %>
-					<div>
-						<%= f.hidden_field :author_id, value: current_user.id %>
-						<%= f.hidden_field :resource_id, value: @resource.id %>
-					</div>
-					<div>
-						<%= f.label "Does the resource provide supporting evidence?" %>
-						<%= f.select :evidence_rating, [1, 2, 3, 4, 5] %>
-					</div>
-					<div>
-						<%= f.label "How useful was this resource?" %>
-						<%= f.select :useful_rating, [1, 2, 3, 4, 5] %>
-					</div>
-					<div>
-						<%= f.label "How detailed is this resource?" %>
-						<%= f.select :detail_rating, [1, 2, 3, 4, 5] %>
-					</div>
-					<div>
-						<%= f.label "Would you recommend this resource to others?" %>
-						<%= f.select :recommend_rating, [1, 2, 3, 4, 5] %>
-					</div>
-					<div>
-						<%= f.label "Message" %><br/>
-						<%= f.text_area :message, size: "60x12" %>
-					</div>
+		<% if user_signed_in? %>	
+			<% if !@resource.reviewers.include?(current_user) %>
+				<div>
+					<p>Leave a Review</p>
+					<%= form_for @review, as: :review, url: reviews_path, html: {class: "review_form"} do |f| %>
+						<div>
+							<%= f.hidden_field :author_id, value: current_user.id %>
+							<%= f.hidden_field :resource_id, value: @resource.id %>
+						</div>
+						<div>
+							<%= f.label "Does the resource provide supporting evidence?" %>
+							<%= f.select :evidence_rating, [1, 2, 3, 4, 5] %>
+						</div>
+						<div>
+							<%= f.label "How useful was this resource?" %>
+							<%= f.select :useful_rating, [1, 2, 3, 4, 5] %>
+						</div>
+						<div>
+							<%= f.label "How detailed is this resource?" %>
+							<%= f.select :detail_rating, [1, 2, 3, 4, 5] %>
+						</div>
+						<div>
+							<%= f.label "Would you recommend this resource to others?" %>
+							<%= f.select :recommend_rating, [1, 2, 3, 4, 5] %>
+						</div>
+						<div>
+							<%= f.label "Message" %><br/>
+							<%= f.text_area :message, size: "60x12" %>
+						</div>
 
-				  	<%= f.submit "Submit Review" %>
-				<% end %> 
-			</div>
+					  	<%= f.submit "Submit Review" %>
+					<% end %> 
+				</div>
+			<% end %>
 		<% end %>
-
+	
 		<div>
 			<% @resource.reviews.each do |review| %>
 			<div class="container">
@@ -120,5 +123,6 @@
 			<% end %>
 		</div>
 	</div>
+
 
 </div>

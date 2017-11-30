@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-4 collection-div">
-		<%= link_to "Add Collection", new_user_collection_path, class: "add-collection" %>
-		<% current_user.collections.each do |collection| %>
+	    <% if @collections.first.owner == current_user %>
+			<%= link_to "Add Collection", new_user_collection_path, class: "add-collection" %>
+		<% end %>
+		<% @collections.each do |collection| %>
 			<div class="collections-list">
 				<%= link_to "#{collection.name}", user_collection_path(id: collection.id), remote: true %>
 			</div>
