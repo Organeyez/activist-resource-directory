@@ -1,3 +1,15 @@
+ <% if @user != current_user || !user_signed_in? %>
+    <header>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><%= link_to "My Created Resources", user_path(@user), class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "My Collections", user_collections_path(@user), class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "My Favorites", user_favorites_path(@user), class: "nav-link active" %></li>
+      </ul>
+    </header>
+<% end %>
+
+
+
 <div>
 	<% @resources.each do |resource| %>
 		<div class="list-of-resources">
