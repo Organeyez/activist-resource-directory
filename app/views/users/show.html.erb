@@ -1,20 +1,25 @@
-<% if !user_signed_in? %>
+<% if !user_signed_in? || current_user != @user %>
+
+	<h4>Welcome to <%= @user.username.capitalize %>'s library </h4>
     <header>
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item"><%= link_to "My Created Resources", user_path(@user), class: "nav-link active" %></li>
-        <li class="nav-item"><%= link_to "My Collections", user_collections_path(@user), class: "nav-link active" %></li>
-        <li class="nav-item"><%= link_to "My Favorites", user_favorites_path(@user), class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "Created Resources", user_path(@user), class: "nav-link active" %></li>
+        <li class="nav-item"><%= link_to "Collections", user_collections_path(@user), class: "nav-link active", remote: true %></li>
+        <li class="nav-item"><%= link_to "Favorites", user_favorites_path(@user), class: "nav-link active", remote: true %></li>
       </ul>
     </header>
+    <div class="user-show-display">
+    	
+    </div>
+
 <% end %>
 
-
-<div>
-	<% @resources.each do |resource| %>
-		<div class="list-of-resources">
-			<li><%= link_to resource.title, resource_path(resource) %> </li>
-			<li class="rating"><%=resource.average_rating %> </li>
-			<li><%= resource.description %></li>
-		</div>
-	<% end %>
-</div>
+	<div>
+		<% @resources.each do |resource| %>
+			<div class="list-of-resources">
+				<li><%= link_to resource.title, resource_path(resource) %> </li>
+				<li class="rating"><%=resource.average_rating %> </li>
+				<li><%= resource.description %></li>
+			</div>
+		<% end %>
+	</div>
