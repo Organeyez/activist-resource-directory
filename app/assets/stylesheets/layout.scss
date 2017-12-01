@@ -6,13 +6,13 @@ body{
 }
 
 .nav-link{
-	color: white;
+	color: black;
 	font-size: 20px;
 }
 
 .logo{
 	font-size: 50px;
-	color: white;
+	color: black;
 }
 
 .btn-outline{
@@ -20,8 +20,8 @@ body{
 }
 
 .navbar{
-	border: 20px solid #0066cc;
-	background-color: black;
+	border: 20px solid #8dbffc;
+	background-color: white;
 	box-shadow: 0px 10px 10px #888888;
 }
 
@@ -30,4 +30,9 @@ body{
 	margin-left: 2%;
 	color: red;
 	font-size: 25px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+	background-color: white;
+	border-color: #8dbffc;
 }
