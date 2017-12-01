@@ -8,7 +8,7 @@
 			<% end %>
 		<% else %>
 			<%= link_to user_favorites_path(resource_id: @resource.id, user_id: current_user), method: "POST" do %>
-			  <i><%= image_tag("empty-heart", class: "fav-btn")%></i>
+			  <i><%= image_tag("red-heart", class: "fav-btn")%></i>
 			<% end %>
 		<% end %>
 	<% end %>
