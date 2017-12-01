@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4 collection-div">
-	    <% if @collections.first.owner == current_user %>
+	    <% if @collections.first.owner == current_user && user_signed_in? %>
 			<%= link_to "Add Collection", new_user_collection_path, class: "add-collection" %>
 		<% end %>
 		<% @collections.each do |collection| %>
