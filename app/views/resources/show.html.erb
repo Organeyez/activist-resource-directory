@@ -4,11 +4,11 @@
 	<% if user_signed_in? %>
 		<% if @resource.fans.include?(current_user) %>
 		<%= link_to user_favorite_path(resource_id: @resource.id, user_id: current_user), method: "DELETE" do %>
-			  <i><%= image_tag("red-heart", class: "fav-btn")%></i>
+			  <i><%= image_tag("red-heart.png", class: "fav-btn")%></i>
 			<% end %>
 		<% else %>
 			<%= link_to user_favorites_path(resource_id: @resource.id, user_id: current_user), method: "POST" do %>
-			  <i><%= image_tag("red-heart", class: "fav-btn")%></i>
+			  <i><%= image_tag("empty-heart.png", class: "fav-btn")%></i>
 			<% end %>
 		<% end %>
 	<% end %>
