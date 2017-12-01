@@ -2,11 +2,12 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = Collection.where(owner_id: params[:user_id])
+    @user = User.find(params[:user_id]) 
   end
 
   def show
     @collection = Collection.find(params[:id])
-    @user = User.find(params[:user_id]) 
+    @user = @collection.owner 
     @collection_resource = CollectionResource.new 
     @resources = @collection.resources 
     respond_to do |f|
