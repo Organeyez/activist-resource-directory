@@ -1,9 +1,11 @@
 <div>
-	<% @favorited_resources.each do |resource|%>
-		<div class="favorites-list">
-			<li><%= link_to resource.title, resource_path(resource) %></li>
-			<li class="rating"><%=resource.average_rating %> </li>
-			<li><%= resource.description %></li>	
-		</div>
-	<% end  %>
+  <% if @favorited_resources %>
+  	<% @favorited_resources.each do |resource|%>
+  		<div class="favorites-list">
+  			<li><%= link_to resource.title, resource_path(resource) %></li>
+  			<li class="rating"><%=resource.average_rating %> </li>
+  			<li><%= resource.description %></li>	
+  		</div>
+    <% end  %>
+  <% end  %>
 </div>
