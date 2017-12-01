@@ -1,34 +1,34 @@
-<h1>Collections show page</h1>
+<h1 class="collection-heading"><%= @collection.name %></h1>	
+
+<% if @user != current_user || !user_signed_in? %>
+	<div class="collection-buttons">
+		<button><%= link_to "Edit Collection", edit_user_collection_path(@collection), remote: true %></button>
+		<button><%= link_to "Delete Collection", user_collection_path(@collection), method: "DELETE" %></button>	
+	</div>
+
+	<div class="add-resource-to-collection-box">
+		<%= form_for @collection_resource, as: :collection_resource, url: user_collection_resources_path, html: {id: "collection-resource-form" } do |f| %>
+			<div>
+				<%= f.label "Add one of your favorites to this collection", class: "blue" %>
+				<%= f.select :resource_id, options_from_collection_for_select(@user.favorited_resources, "id", "title")%>
+			</div>
+				<%= f.hidden_field :collection_id, value: @collection.id %>
+		  		<%= f.submit "Add to Collection", class: "btn-submit", remote: true %>
+			</div>
+		<% end %>
+	</div>
+<% end %>
 
 <div>
-	<button><%= link_to "Edit Collection", edit_user_collection_path(@collection) %></button>
-
-	<button><%= link_to "Delete Collection", user_collection_path(@collection), method: "DELETE" %></button>	
-
-</div>
-
-<div class="add-resource-to-collection-box">
-	<p>Add A Resource to Your Collection</p>
-
-	<%= form_for @collection_resource, as: :collection_resource, url: user_collection_resources_path, html: {id: "collection-resource-form" } do |f| %>
-		<div>
-			<%= f.label "Select a Favorite"%>
-			<%= f.select :resource_id, options_from_collection_for_select(current_user.favorited_resources, "id", "title")%>
-		</div>
-			<%= f.hidden_field :collection_id, value: @collection.id %>
-	  		<%= f.submit "Add to Collection" %>
-		</div>
-	<% end %>
-</div>
-
-<div>
-	<p>List of Favorites within this collection</p>
+	<h4>Collection Items</h4>
 	<% @resources.each do |resource| %>
 		<div class="list-of-resources">
 			<li><%= link_to resource.title, resource_path(resource) %></li>
 			<li class="rating"><%=resource.average_rating %> </li>
 			<li><%= resource.description %></li>
-			<button><%= link_to "Remove", user_collection_resource_path(resource_id: resource.id, collection_id: @collection.id), method: "DELETE" %></button>	
+			<% if current_user == @collection.owner %>
+			<button><%= link_to "Remove", user_collection_resource_path(resource_id: resource.id, collection_id: @collection.id), method: "DELETE" %></button>
+			<% end %>	
 		</div>
 	<% end %>
 </div>
