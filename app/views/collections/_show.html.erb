@@ -21,14 +21,16 @@
 
 <div>
 	<h4>Collection Items</h4>
-	<% @resources.each do |resource| %>
-		<div class="list-of-resources">
-			<li><%= link_to resource.title, resource_path(resource) %></li>
-			<li class="rating"><%=resource.average_rating %> </li>
-			<li><%= resource.description %></li>
-			<% if current_user == @collection.owner %>
-			<button><%= link_to "Remove", user_collection_resource_path(resource_id: resource.id, collection_id: @collection.id), method: "DELETE" %></button>
-			<% end %>	
-		</div>
+	<% if @resources %>
+		<% @resources.each do |resource| %>
+			<div class="list-of-resources">
+				<li><%= link_to resource.title, resource_path(resource) %></li>
+				<li class="rating"><%=resource.average_rating %> </li>
+				<li><%= resource.description %></li>
+				<% if current_user == @collection.owner %>
+				<button><%= link_to "Remove", user_collection_resource_path(resource_id: resource.id, collection_id: @collection.id), method: "DELETE" %></button>
+				<% end %>	
+			</div>
+		<% end %>
 	<% end %>
 </div>

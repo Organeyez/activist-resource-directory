@@ -1,8 +1,10 @@
 <h3 class="category-show-heading"><%= @category.title %></h3>
-<% @resources.each do |resource|%>
-	<div class="list-of-resources">
-		<li><%= link_to resource.title, resource_path(resource) %></li>
-		<li class="rating"><%=resource.average_rating %> </li>
-		<li><%= resource.description %></li>	
-	</div>
+<% if @resources %>
+  <% @resources.each do |resource|%>
+  	<div class="list-of-resources">
+  		<li><%= link_to resource.title, resource_path(resource) %></li>
+  		<li class="rating"><%=resource.average_rating %> </li>
+  		<li><%= resource.description %></li>	
+  	</div>
+  <% end  %>
 <% end  %>
