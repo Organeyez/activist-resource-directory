@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-4 collection-div">
-      <% if @collections %>
-        <% if @collections.first.owner == current_user && user_signed_in? %>
-        <%= link_to "Add Collection", new_user_collection_path, class: "add-collection" %>
-      <% end %>
-      <% @collections.each do |collection| %>
-        <div class="collections-list">
-          <%= link_to "#{collection.name}", user_collection_path(id: collection.id), remote: true %>
-        </div>
-      <% end %> 
-    <% end %>     
+        <% if @user == current_user %>
+          <%= link_to "Add Collection", new_user_collection_path, class: "add-collection" %>
+        <% end %>
+        <% if !@collections.empty? %>
+          <% @collections.each do |collection| %>
+            <div class="collections-list">
+              <%= link_to "#{collection.name}", user_collection_path(id: collection.id), remote: true %>
+            </div>
+          <% end %> 
+        <% end %>     
     </div>
     <div class="col-8 collections-partial"> </div>
   </div>
