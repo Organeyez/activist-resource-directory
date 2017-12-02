@@ -1,6 +1,6 @@
 <% if !user_signed_in? || current_user != @user %>
 
-	<h4>Welcome to <%= @user.username.capitalize %>'s library </h4>
+	<h4 class="user-show-header">Welcome to <%= @user.username.capitalize %>'s library </h4>
     <header>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item"><%= link_to "Created Resources", user_path(@user), class: "nav-link active" %></li>
