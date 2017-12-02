@@ -1,0 +1,15 @@
+<h1>Edit Collection</h1>
+
+<%= form_for @collection, url: {action: "update"}, html: {class: "collection-form"} do |f| %>
+	
+	<div>
+		<%=f.label "Name" %>
+		<%=f.text_field :name %>
+	</div>
+	<div>
+		<%=f.hidden_field :owner_id, value: current_user.id %>
+	</div>
+	
+
+	<%= f.submit "Update" %>
+<% end %>

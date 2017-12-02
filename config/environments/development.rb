@@ -23,7 +23,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
+    config.cachape_store = :null_store
   end
 
   # Don't care if the mailer can't send.
@@ -51,4 +51,23 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+
+  #devise mailer settings 
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp 
+  # ActionMailer::Base.smtp_settings = {
+  #   user_name:            ENV['GMAIL_USERNAME'],
+  #   password:             ENV['GMAIL_PASSWORD'],
+  #   domain:               'mail.google.com',
+  #   address:              'smtp.gmail.com',
+  #   port:                 '465',
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  #default url options, as instructed by devise. 
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
 end
