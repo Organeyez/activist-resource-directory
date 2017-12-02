@@ -11,12 +11,12 @@ class ResourcesController < ApplicationController
 
 	def new
 		@resource = Resource.new 
-		@categories = Category.all
+		@categories = Category.order(:title)
 	end
 
 	def create
 		@resource = current_user.posted_resources.new(resource_params)
-		@categories = Category.all 
+		@categories = Category.order(:title) 
 		if @resource.save
 			redirect_to resource_path(@resource), notice: "Your Resource was successfully created. Please double-check that your link works correctly"
 		else
