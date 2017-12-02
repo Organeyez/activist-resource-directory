@@ -14,7 +14,7 @@
 	<% end %>
 	<p>Description: <%= @resource.description %>
 	<span><%= link_to "Link to Resource", "#{@resource.url}", target: "_blank" %></span></p>
-	<p>Category: <%= @resource.category.title %></p>
+	<p>Category: <%= link_to "#{@resource.category.title}", category_path(@resource.category) %></p>
 	<p>Author: <%= link_to "#{@resource.author.username}", user_path(@resource.author) %></p>
 
 	<p>Total Fans: <%= @resource.total_fans %></p>
