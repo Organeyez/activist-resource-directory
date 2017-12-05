@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
 
   def index
-    @collections = Collection.where(owner_id: params[:user_id])
+    @collections = Collection.where(owner_id: params[:user_id]).order(:name)
     @user = User.find(params[:user_id]) 
   end
 

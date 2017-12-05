@@ -9,11 +9,18 @@ class CategoriesController < ApplicationController
 		@resources = @category.resources
 	end
 
-#for admin use only 
 	def new
+		@category = Category.new 
 	end
 
 	def create
+		@category = Category.new(category_params) 
+		if @category.save
+			redirect_to root_path, notice: "Your category was successfully created."
+		else
+			@errors = @category.errors.full_messages
+			render :new, status: 422
+		end
 	end
 
 	def edit
@@ -21,5 +28,10 @@ class CategoriesController < ApplicationController
 
 	def update
 	end
+
+	private 
+  def category_params
+    params.require(:category).permit(:title)
+  end
 
 end
