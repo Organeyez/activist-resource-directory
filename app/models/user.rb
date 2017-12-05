@@ -9,6 +9,7 @@ class User < ApplicationRecord
 	validates :username, :email, :password, :admin, presence: true 
 	validates :username, :email, uniqueness: true 
 	validates_inclusion_of :admin, in: [true, false]
+	validates_inclusion_of :subscribe, in: [true, false]
 
 	# Include default devise modules. Others available are:
 	# :timeoutable and :omniauthable
