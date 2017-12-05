@@ -1,24 +1,41 @@
-# README
+### Your Activist Resource Directory 
+An online platform for activists, organizers, and organizations to share resources and create personal libraries. The app is a work in progress but MVC will soon be released for public use. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Forking This Repo
+Everything is setup for you. All you need to do is:
 
-Things you may want to cover:
+1. `bundle install`
+2. `rails db:create`
+3. `rails db:migrate`
+4. `rails db:seed`
+5. `rails s`
 
-* Ruby version
+### Current Features
+1. All resources and user libraries are visible to the public
+2. Users (those who create an account) can create their own library by 
+  * Creating resources
+  * Favoriting resources
+  * Creating collections
+  * Adding favorites to their collections
 
-* System dependencies
+3. Users can review and rate a resource
+4. Users can see the libraries of other users 
 
-* Configuration
+### Future Features
+1. Users can upvote and downvote a resource
+2. Users can do an in depth search for a resource
+3. The app can display complex statistics and analytics about resources bases on their reviews, updates, downvotes, clicks, and more. 
 
-* Database creation
+### Contributors
+Iris Nevins => @cosmosiris
 
-* Database initialization
+### Technologies 
+1. Ruby on Rails & Ruby
+2. Devise (for user authentication/registration)
+3. HTML
+4. JQuery & Javascript
+5. CSS
+6. Bootstrap
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Demo
+http://youractivistresourcedirectory.com/
