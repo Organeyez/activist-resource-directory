@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @favorited_resources = @user.favorited_resources
+    @favorited_resources = @user.favorited_resources.order(:title)
     respond_to do |f|
        f.html { render :index}
        f.json { render json: @favorited_resources.to_json}

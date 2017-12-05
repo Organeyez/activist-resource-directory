@@ -15,14 +15,14 @@ Rails.application.routes.draw do
         get 'users/settings' => 'users#edit'
     end
 
-    resources :users, only: [:show] do
+    resources :users, only: [:index, :show] do
         resources :collections
         resources :collection_resources 
         resources :favorites, only: [:index, :create, :destroy]
     end
 
     get 'admin' => 'control_panel#index', :as => :admin
-    resources :control_panel, only: [:index, :new, :create, :destroy]
+    resources :control_panel, only: [:index] 
 
 
     #resources & tags  
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :reviews
 
     #categories
-    resources :categories, only: [:index, :show]
+    resources :categories
 
 
     root to: "categories#index"
