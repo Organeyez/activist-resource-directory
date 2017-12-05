@@ -16,6 +16,7 @@
 	<span><%= link_to "Link to Resource", "#{@resource.url}", target: "_blank" %></span></p>
 	<p>Category: <%= link_to "#{@resource.category.title}", category_path(@resource.category) %></p>
 	<p>Author: <%= link_to "#{@resource.author.username}", user_path(@resource.author) %></p>
+	<p>Created <%= @resource.created_at.strftime("%m/%e/%y, %l:%M %p") %></p>
 
 	<p>Total Fans: <%= @resource.total_fans %></p>
 	<p><%= @resource.average_rating %> </p>
@@ -62,6 +63,9 @@
 
 	<div class="review-box">
 		<h3 class="review-header">Reviews</h3>
+		<% if !user_signed_in? %>
+			<p class="center red">You must be signed in to leave a review</p>
+		<% end %>
 		<% if user_signed_in? %>	
 			<% if !@resource.reviewers.include?(current_user) %>
 				<div>
@@ -108,7 +112,7 @@
 					<li><strong>Strong: </strong> <%= review.detail_rating %></li>
 					<li><strong>Recommendable: </strong> <%= review.recommend_rating %></li>
 					<li><strong>Message:</strong> <%= review.message %></li>
-					<li><strong>Reviewed by: </strong> <%= review.author.username %></li>
+					<li><strong>Reviewed by: </strong> <%= link_to "#{review.author.username}", user_path(@resource.author) %></li>
 					<% if review.author == current_user %>
 						<%= link_to "Edit", edit_review_path(review), remote: true %>
 						<%= link_to "Delete", review_path(review), method: "DELETE" %>

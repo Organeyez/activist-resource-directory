@@ -1,0 +1,9 @@
+<%= form_for @category, url: {action: "create"}, html: {class: "category-form"} do |f| %>
+  
+  <div>
+    <%=f.label "Title" %>
+    <%=f.text_field :title %>
+  </div>
+
+  <%= f.submit "Create" %>
+<% end %>
