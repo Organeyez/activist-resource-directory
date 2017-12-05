@@ -11,15 +11,15 @@ Everything is setup for you. All you need to do is:
 5. `rails s`
 
 ### Current Features
-1. All resources and user libraries are visible to the public
+1. All resources are visible to the public
 2. Users (those who create an account) can create their own library by 
   * Creating resources
   * Favoriting resources
   * Creating collections
   * Adding favorites to their collections
 
-3. Users can review and rate a resource
-4. Users can see the libraries of other users 
+3. Users can review and rate any resources
+4. Users can share their personal libraries with the public  
 
 ### Future Features
 1. Users can upvote and downvote a resource
