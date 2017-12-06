@@ -19,6 +19,4 @@ class TagsController < ApplicationController
 				
 	end
 
-	private
-
 end
