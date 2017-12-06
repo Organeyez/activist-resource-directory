@@ -23,12 +23,13 @@
           <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link active" %></li>        
         <% end %>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
-      </form>        
+      <%= form_tag(resources_path, method: :get, class: "form-inline my-2 my-lg-0") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Keyword", class: "form-control mr-sm-2" %>
+        <%= submit_tag 'Search', class: "btn btn-outline my-2 my-sm-0" %>
+      <% end %>
     </nav>
-    <p class="notice">This website is still under construction. To see examples of resources visit the "civil rights and discrimination" category. The search bar is a work in progress.</p>
+
+    <p class="notice">This website is still under construction. To see examples of resources visit the "civil rights and discrimination" category. You may use the search bar for a simple keyword search, but a more complex search bar will soon be implemented.</p>
 
     <%= render "layouts/errors" %>
     <div class="notices">
