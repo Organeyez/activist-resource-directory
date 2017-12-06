@@ -61,6 +61,8 @@ Iris Nevins => @cosmosiris
 ### User Library
 ![User Library](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-user-library.png)
 
+### Database Schema 
+![Schema](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-schema.png)
 
-### Demo
+### Link to Wesite
 http://youractivistresourcedirectory.com/
