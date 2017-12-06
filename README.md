@@ -5,7 +5,7 @@ This question motivated me to create Your Activist Resource Directory (YARD). YA
 
 YARD aims to create a more connected and knowledgeable community of activists.  
 
-YARD is a work in progress but the MVC has been released for people to use and I plan to continually update this app with new technologies including a more advanced searching mechanism, and machine learning algorithms that recommend resources to users based on their browser history. 
+YARD is a work in progress but the MVC has been released for people to use and I plan to continually update this app. To start, I have found a front-end designer to make the website prettier, more user-friendly, and slightly more colorful. In the future I plan to implement two specific features. The first is a more advanced searching mechanism. The second is a machine learning algorithm that recommends resources to users based on their user history. 
 
 
 ### Forking This Repo
@@ -46,10 +46,20 @@ Iris Nevins => @cosmosiris
 6. Bootstrap
 
 ### Screenshots
+### Landing Page
 ![Landing Page](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-landing-page.png)
-![Alt Text](url)
-![Alt Text](url)
-![Alt Text](url)
+### Categories
+![Categories](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-categories.png)
+### Full User Registration and Login functionality including email confirmations, lockouts, and more. 
+![Login/Registration](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-login-registration.png)
+### List of Resources
+![Category Show](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-resource-list.png)
+### Individual Resource
+![Resource Show](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-resource-show.png)
+### Reviews
+![Reviews](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-review.png)
+### User Library
+![User Library](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-user-library.png)
 
 
 ### Demo
