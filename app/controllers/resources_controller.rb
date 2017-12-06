@@ -1,6 +1,9 @@
 class ResourcesController < ApplicationController
 	def index
-		@resources = Resource.all 
+		@resources = Resource.all
+		if params[:search]
+			@resources = Resource.search(params[:search]).order("created_at DESC")
+		end
 	end
 
 	def show
@@ -53,4 +56,5 @@ class ResourcesController < ApplicationController
 	def resource_params
 		params.require(:resource).permit(:title, :description, :url, :category_id)
 	end
+
 end
