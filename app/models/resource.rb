@@ -32,4 +32,9 @@ class Resource < ApplicationRecord
 		end
 	end
 
+	def self.search(search)
+		where("lower(title) LIKE ?", "%#{search.downcase}%")
+		where("lower(description) LIKE ?", "%#{search.downcase}%")
+	end
+
 end
