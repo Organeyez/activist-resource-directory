@@ -39,11 +39,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def sign_up_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :subscribe, :admin )
   end
 
   def account_update_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password, :subscribe)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password, :subscribe, :admin)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
