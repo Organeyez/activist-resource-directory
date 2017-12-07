@@ -14,7 +14,7 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password, class: "form-label" %> <i>(enter original password if you don't want to change it)</i><br />
+      <%= f.label :password, class: "form-label" %> <i>(<!-- enter original password if you don't want to change it -->)</i><br />
       <%= f.password_field :password, autocomplete: "off", class: "form-input" %>
       <% if @minimum_password_length %>
         <br />
@@ -33,14 +33,14 @@
     </div>
 
     <div>
-      <%= radio_button_tag(:subscribe, true) %>
-      <%= label_tag(:answer, "Subscribe to weekly email") %>
+      <%= f.label :subscribe, "Subscribe to weekly email" %>
+      <%= f.radio_button :subscribe, true, :checked => true %>
     </div> 
 
-    <div> 
-      <%= radio_button_tag(:subscribe, false) %>
-      <%= label_tag(:answer, "Unsubscribe from weekly email") %> 
-    </div>
+    <div>
+      <%= f.label :unsubscribe, "Unsubscribe to weekly email" %>
+      <%= f.radio_button :subscribe, false %>
+    </div> 
 
     <div>
       <%=f.hidden_field :admin, value: false %>
