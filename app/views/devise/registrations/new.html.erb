@@ -24,7 +24,15 @@
       <%= f.label :password_confirmation, class: "form-label" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-input" %>
     </div>
-    
+
+    <div>
+      <%=f.hidden_field :admin, value: false %>
+    </div>
+
+    <div>
+      <%=f.hidden_field :subscribe, value: true %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Sign up", class: "login-btn" %>
     </div>
