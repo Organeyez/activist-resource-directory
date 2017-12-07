@@ -36,9 +36,14 @@
       <%= radio_button_tag(:subscribe, true) %>
       <%= label_tag(:answer, "Subscribe to weekly email") %>
     </div> 
+
     <div> 
       <%= radio_button_tag(:subscribe, false) %>
       <%= label_tag(:answer, "Unsubscribe from weekly email") %> 
+    </div>
+
+    <div>
+      <%=f.hidden_field :admin, value: false %>
     </div>
 
     <div class="actions">
