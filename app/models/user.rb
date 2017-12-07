@@ -5,8 +5,9 @@ class User < ApplicationRecord
 	has_many :collections, foreign_key: :owner_id
 	has_many :reviews, foreign_key: :author_id 
 
-
-	validates :username, :email, :password, presence: true 
+	validates :password, presence: true, length: {minimum: 5, maximum: 18}, on: :create
+	validates :password, length: {minimum: 5, maximum: 18}, on: :update, allow_blank: true
+	validates :username, :email, presence: true 
 	validates :username, :email, uniqueness: true 
 	validates_inclusion_of :admin, in: [true, false]
 	validates_inclusion_of :subscribe, in: [true, false]
