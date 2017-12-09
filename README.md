@@ -29,10 +29,12 @@ Everything is setup for you. All you need to do is:
 4. Users can share their personal libraries with the public  
 
 ### Future Features
-1. Users can upvote and downvote a resource
-2. Users can do an in depth search for a resource
-3. The app can display complex statistics and analytics about resources bases on their reviews, updates, downvotes, clicks, and more. 
-4. Machine learning algorithms will recommend resources to users based on user history
+1. Full test suite
+2. Admin panel with ability to download list of email subscribers 
+3. Users can upvote and downvote a resource
+4. Users can do an in depth search for a resource
+5. The app can display complex statistics and analytics about resources bases on their reviews, updates, downvotes, clicks, and more. 
+6. Machine learning algorithms will recommend resources to users based on user history
 
 ### Contributors
 Iris Nevins => @cosmosiris
