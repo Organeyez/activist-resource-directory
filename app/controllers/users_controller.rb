@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'csv'
 
 	def index
    @users = User.all 
@@ -11,4 +12,12 @@ class UsersController < ApplicationController
 	end
 
 
-end
+  def email_subscribers
+    @subscribed_users = User.where(subscribe: true)
+    respond_to do |format|
+      format.csv do 
+        headers['Content-Type'] = 'text/csv'
+      end
+    end
+  end
+
