@@ -46,6 +46,7 @@ Iris Nevins => @cosmosiris
 4. JQuery & Javascript
 5. CSS
 6. Bootstrap
+7. Elastic Search 
 
 ### Screenshots
 ### Landing Page
