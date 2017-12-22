@@ -6,12 +6,32 @@
 
     <%= stylesheet_link_tag   'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <!-- adding font -->
+    <style>
+      @font-face {
+        font-family: 'comfortaa-bold';
+        src: url('/assets/para/comfortaa-bold.eot');
+        src: url('/assets/para/comfortaa-bold.eot?#iefix') format('embedded-opentype'),
+          url('/assets/para/comfortaa-bold.woff') format('woff'),
+          url('/assets/para/comfortaa-bold.ttf') format('truetype'),
+          url('/assets/para/comfortaa-bold.svg#a_sensible_armadilloregular') format('svg');
+        font-weight: normal;
+        font-style: normal;
+     }
+     .content p {
+        font-family: 'comfortaa-bold';
+        font-size: 42px;
+     }
+   </style>
+
+
   </head>
 
   <body>
     <nav class="navbar">
       <ul class="nav">
-          <%= link_to "YARD", categories_path, class: "navbar-brand logo" %>
+          <%= link_to image_tag("yardlogosmall2.png", border: 0), categories_path, class: "navbar-brand logo" %>
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to "Homepage", user_path(current_user), class: "nav-link active" %></li>
           <li class="nav-item"><%= link_to "Create a Resource", new_resource_path, class: "nav-link active" %></li>
@@ -19,13 +39,13 @@
           <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link active" %></li>
           </li>
         <% else %>
-          <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link active" %></li>
-          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link active" %></li>        
+          <li class="nav-item sign-up-link"><%= link_to "sign up", new_user_registration_path, class: "nav-link active" %></li>
+          <li class="nav-item login-link"><%= link_to "login", new_user_session_path, class: "nav-link active" %></li>
         <% end %>
       </ul>
-      <%= form_tag(resources_path, method: :get, class: "form-inline my-2 my-lg-0") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Keyword", class: "form-control mr-sm-2" %>
-        <%= submit_tag 'Search', class: "btn btn-outline my-2 my-sm-0" %>
+      <%= form_tag(resources_path, method: :get, class: "form-inline my-2 my-lg-0 search-form-style") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "keyword", class: "form-control mr-sm-2 search-field-style" %>
+        <%= submit_tag 'search', class: "form-control btn btn-outline my-2 my-sm-0 search-button-style" %>
       <% end %>
     </nav>
 
@@ -34,9 +54,9 @@
     <%= render "layouts/errors" %>
     <div class="notices">
     	<p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>      
+      <p class="alert"><%= alert %></p>
     </div>
-  
+
  <% if user_signed_in? %>
     <header>
       <ul class="nav nav-tabs" role="tablist">
