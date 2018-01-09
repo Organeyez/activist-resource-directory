@@ -5,7 +5,7 @@ class Resource < ApplicationRecord
 	has_many 	:resource_tags
 	has_many	:tags, through: :resource_tags
 	has_many	:resources, through: :resource_tags
-	has_many    :collection_resources 
+	has_many  :collection_resources 
 	has_many	:favorites
 	has_many	:fans, through: :favorites 
 	has_many	:reviews 
@@ -36,5 +36,9 @@ class Resource < ApplicationRecord
 		where("lower(title) LIKE ?", "%#{search.downcase}%")
 		where("lower(description) LIKE ?", "%#{search.downcase}%")
 	end
+ 
+	# TODO: Move tag addition logic here from controller.
+	# def add_tag(tag)
+	# end
 
 end
