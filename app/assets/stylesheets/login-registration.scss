@@ -5,26 +5,38 @@
 }
 
 .form-label{
-	font-size: 25px;	
+	font-size: 25px;
 }
 
 .form-input{
 	margin-bottom: 10%;
 	width: 50%;
 	border: 1px solid black;
+	border-radius: 2px;
 }
 
 .login-btn{
 	margin-bottom: 10%;
 	font-size: 25px;
 	padding: 2% 10%;
-	border: 2px solid #0066cc;
+	border: 2px solid #8cc63f;
+}
+
+.login-btn:hover{
+	color: #000000;
+	background-color: #8cc63f;
 }
 
 .remember-me-checkbox{
-	transform: scale(2)
+	transform: scale(2);
+}
+
+.remember-me-text{
+	margin-left: 20px;
 }
 
 .edit-account-header{
 	margin-top: 5%;
 }
+
+
