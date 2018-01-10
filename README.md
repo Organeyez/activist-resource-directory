@@ -32,7 +32,7 @@ Everything is setup for you. All you need to do is:
 ### Future Features
 1. Full test suite
 2. Users can upvote and downvote a resource
-4. Users can do an in depth search for a resource
+4. Users can do an in depth search for a resource (elastic search)
 5. The app can display complex statistics and analytics about resources bases on their reviews, updates, downvotes, clicks, and more. 
 6. Machine learning algorithms will recommend resources to users based on user history
 
@@ -49,6 +49,12 @@ Iris Nevins => @cosmosiris
 7. Elastic Search 
 
 ### Screenshots
+I have recently been working to redesign the website for a more appealing aesthetic and user interface. Below are three pictures of the new design, but the live website has not yet been updated with the new design. 
+## New Design
+![New Design Image 2](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/updated-design-1.png)
+![New Design Image 2](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/updated-design-2.png)
+![New Design Image 3](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/updated-design-3.png)
+### Original Design
 ### Landing Page
 ![Landing Page](https://raw.githubusercontent.com/cosmosiris/activist-resource-directory/development/public/github-images/yard-landing-page.png)
 ### Categories
