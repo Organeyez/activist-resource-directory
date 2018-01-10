@@ -2,11 +2,10 @@
 <html>
   <head>
     <title>ActivistResourceDirectory</title>
-    <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag   'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-
+    <%= csrf_meta_tags %>
     <!-- adding font -->
     <style>
       @font-face {
@@ -24,48 +23,72 @@
         font-size: 42px;
      }
    </style>
-
-
   </head>
 
   <body>
-    <nav class="navbar">
-      <ul class="nav">
-          <%= link_to image_tag("yardlogosmall2.png", border: 0), categories_path, class: "navbar-brand logo" %>
-        <% if user_signed_in? %>
-          <li class="nav-item"><%= link_to "Homepage", user_path(current_user), class: "nav-link active" %></li>
-          <li class="nav-item"><%= link_to "Create a Resource", new_resource_path, class: "nav-link active" %></li>
-          <li class="nav-item"><%= link_to "Settings", edit_user_registration_path, class: "nav-link active" %></li>
-          <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link active" %></li>
-          </li>
-        <% else %>
-          <li class="nav-item sign-up-link"><%= link_to "sign up", new_user_registration_path, class: "nav-link active" %></li>
-          <li class="nav-item login-link"><%= link_to "login", new_user_session_path, class: "nav-link active" %></li>
-        <% end %>
-      </ul>
-      <%= form_tag(resources_path, method: :get, class: "form-inline my-2 my-lg-0 search-form-style") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "keyword", class: "form-control mr-sm-2 search-field-style" %>
-        <%= submit_tag 'search', class: "form-control btn btn-outline my-2 my-sm-0 search-button-style" %>
-      <% end %>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to "Homepage", user_path(current_user), class: "nav-link active" %></li>
+              <li class="nav-item"><%= link_to "Create a Resource", new_resource_path, class: "nav-link active" %></li>
+              <li class="nav-item"><%= link_to "Settings", edit_user_registration_path, class: "nav-link active" %></li>
+              <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link active" %></li>
+              </li>
+            <% else %>
+              <li class="nav-item sign-up-link"><%= link_to "sign up", new_user_registration_path, class: "nav-link active" %></li>
+              <li class="nav-item login-link"><%= link_to "login", new_user_session_path, class: "nav-link active" %></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <%= form_tag(resources_path, method: :get, class: "navbar-form navbar-left") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "keyword", class: "form-control" %>
+              <%= submit_tag 'search', class: "btn btn-default" %>
+            <% end %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+              <ul class="dropdown-menu" >
+                  <% @categories.each do |category|%>
+                    <li><%= link_to "#{category.title}", category_path(category) %></li>
+                  <% end%>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
+    <%= link_to image_tag("yardlogosmall2.png", border: 0), root_path, class: "navbar-brand logo" %>
 
-    <p class="notice">This website is still under construction. To see examples of resources visit the "civil rights and discrimination" category. You may use the search bar for a simple keyword search, but a more complex search bar will soon be implemented.</p>
-
+  <!--   <p class="notice">This website is still under construction. To see examples of resources visit the "civil rights and discrimination" category. You may use the search bar for a simple keyword search, but a more complex search bar will soon be implemented.</p>
+ -->
     <%= render "layouts/errors" %>
     <div class="notices">
     	<p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
 
- <% if user_signed_in? %>
-    <header>
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item"><%= link_to "My Created Resources", user_path(current_user), class: "nav-link active" %></li>
-        <li class="nav-item"><%= link_to "My Collections", user_collections_path(current_user), class: "nav-link active" %></li>
-        <li class="nav-item"><%= link_to "My Favorites", user_favorites_path(current_user), class: "nav-link active" %></li>
-      </ul>
-    </header>
-<% end %>
-    <%= yield %>
+   <% if user_signed_in? %>
+      <header>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><%= link_to "My Created Resources", user_path(current_user), class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to "My Collections", user_collections_path(current_user), class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to "My Favorites", user_favorites_path(current_user), class: "nav-link active" %></li>
+        </ul>
+      </header>
+  <% end %>
+  <%= yield %>
+
   </body>
 </html>
