@@ -36,7 +36,9 @@ Rails.application.routes.draw do
     #categories
     resources :categories
 
+    #welcome
+    resources :welcome 
 
-    root to: "categories#index"
+    root to: "welcome#index"
 
 end

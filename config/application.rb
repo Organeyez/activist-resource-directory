@@ -28,5 +28,8 @@ module ActivistResourceDirectory
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Adding custom fonts
+    config.assets.enabled = true
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
 end
