@@ -1,0 +1,74 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#home-intro{
+  border: 10px solid white;
+  position: relative;
+  margin: 0 auto;
+  width: 70%;
+  font-size: 25px;
+  color: #0066cc;
+  font-weight: 800px;
+}
+
+/*#category-list li{
+  list-style: none;
+  font-size: 25px;
+}
+
+#category-list{
+  margin-left: 10%;
+}
+
+#category-list a{
+  color: #6fa02e;
+}
+
+#category-list a:hover{
+  color: #25532c;
+  text-decoration: none;
+}*/
+.jumbotron{
+  margin-bottom: 0px;
+}
+
+#heading{
+  text-shadow: 0px 2px 2px green;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#carousel-example-generic{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.category-show-heading{
+  text-align: center;
+  margin-top: 2%;
+}
+
+#cat-index-info{
+  padding: 20px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.cat-info-text{
+  color: black;
+}
+
+.info-list{
+  color: black;
+}
+
+a.organeyez-links{
+  color: green;
+  text-decoration: none;
+}
+
+a.organeyez-links:hover{
+  color: silver;
+  text-decoration: none;
+}

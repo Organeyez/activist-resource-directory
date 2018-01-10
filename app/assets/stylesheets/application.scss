@@ -13,10 +13,12 @@
  */
 
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "layout";
 @import "categories";
 @import "resources";
 @import "login-registration";
 @import "user_show";
+@import "welcome";
 
