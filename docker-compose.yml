@@ -1,0 +1,25 @@
+version: "2"
+services:
+  database:
+    image: 'postgres:10-alpine'
+    restart: always
+    environment:
+      POSTGRES_USER: yard
+      POSTGRES_PASSWORD: yard
+    ports:
+      - 5432
+  app:
+    build:
+      context: .
+      args:
+        - ENV=development
+    env_file: .env.app
+    command: "bundle exec rackup --port 3000 --host 0.0.0.0"
+    volumes:
+      - "./:/opt/yard/"
+    ports:
+      - "${PORT}:3000"
+    depends_on:
+      - database
+    links:
+      - database
