@@ -6,7 +6,7 @@ default: &default
 
 development:
   <<: *default
-  min_messages: debug5
+  min_messages: notice
   database: yard_development
 
 test:
