@@ -11,11 +11,61 @@ YARD is a work in progress but the MVC has been released for people to use and I
 ### Forking This Repo
 Everything is setup for you. All you need to do is:
 
-1. `bundle install`
-2. `rails db:create`
-3. `rails db:migrate`
-4. `rails db:seed`
-5. `rails s`
+#### 1. Install Docker Compose
+On macOS, you can install [Docker Compose][1] via [Homebrew][2]:
+
+```
+brew install docker-compose
+```
+
+#### 2. Add Initial Configuration
+Create the file `.env.app` in the root YARD directory and
+add the following to it:
+
+```
+DATABASE_URL=postgresql://yard:yard@database/yard_development
+ENV=development
+PORT=3000
+```
+
+This will allow you to connect to the application from <http://localhost:3030>.
+Feel free to change `3030` to whatever you want; just be sure to do the following
+before running step #3:
+
+```
+docker-compose rm -vsf
+```
+
+#### 3. Start the Services
+Starting the system requires one command:
+
+```
+docker-compose up
+```
+
+This'll:
+
+  * start Postgres 10
+  * build and set up YARD - see [Dockerfile](./Dockerfile) and [its scripts](./docker)
+
+#### 4. Setup Database
+This can be done by running the following:
+
+```
+docker-compose run app rails db:create
+docker-compose run app rails db:migrate
+docker-compose run app rails db:seed
+```
+
+There's also a one-liner for the above:
+
+```
+docker-compose run app rails db:setup
+```
+
+#### 4. Profit!
+That's it! You're all setup and ready to start working on YARD.
+
 
 ### Current Features
 1. All resources are visible to the public
