@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   def index
     @user = User.find(params[:user_id])
     @favorited_resources = @user.favorited_resources.order(:title)
@@ -7,7 +6,7 @@ class FavoritesController < ApplicationController
        f.html { render :index}
        f.json { render json: @favorited_resources.to_json}
        f.js
-    end 
+    end
   end
 
   def create
@@ -20,5 +19,4 @@ class FavoritesController < ApplicationController
     @favorite.destroy
     redirect_to request.referer
   end
-
 end

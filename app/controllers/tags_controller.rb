@@ -1,6 +1,4 @@
 class TagsController < ApplicationController
-
-
 	def create
 		@resource = Resource.find(params[:tag][:resource_id])
 		@tag = Tag.find_or_create_by(name: params[:tag][:name])
@@ -16,7 +14,5 @@ class TagsController < ApplicationController
 			@errors = ["You cannot add more than 10 tags to this resource"]
 			redirect_to resource_path(@resource), notice: "You cannot add more than 10 tags to this resource"
 		end
-				
 	end
-
 end

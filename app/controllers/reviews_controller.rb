@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
-
   def new
-    @review = Review.new 
+    @review = Review.new
   end
 
   def create
@@ -22,7 +21,7 @@ class ReviewsController < ApplicationController
        f.html { render :edit}
        f.json { render json: @review.to_json }
        f.js
-    end 
+    end
   end
 
   def update
@@ -41,7 +40,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to request.referer, notice: "Resource was successfully destroyed" 
+    redirect_to request.referer, notice: "Resource was successfully destroyed"
   end
 
   private
@@ -49,5 +48,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:message, :evidence_rating, :useful_rating, :detail_rating, :recommend_rating, :author_id, :resource_id)
   end
-
 end
