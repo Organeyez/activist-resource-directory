@@ -52,15 +52,15 @@ This'll:
 This can be done by running the following:
 
 ```
-docker-compose run app rails db:create
-docker-compose run app rails db:migrate
-docker-compose run app rails db:seed
+docker-compose run app rake db:create
+docker-compose run app rake db:migrate
+docker-compose run app rake db:seed
 ```
 
 There's also a one-liner for the above:
 
 ```
-docker-compose run app rails db:setup
+docker-compose run app rake db:setup
 ```
 
 #### 4. Profit!
