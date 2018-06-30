@@ -19,7 +19,7 @@ brew install docker-compose
 ```
 
 #### 2. Add Initial Configuration
-Create the file `.env.app` in the root YARD directory and
+Create the file `.env` in the root YARD directory and
 add the following to it:
 
 ```
