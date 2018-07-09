@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_length_of(:description) }
 
 
-  decribe '.total_fans' do
+  describe '.total_fans' do
   end
 
   describe '.average_rating' do
