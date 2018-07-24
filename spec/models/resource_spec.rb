@@ -24,11 +24,13 @@ RSpec.describe Resource, type: :model do
   let(:fan1) { User.create(password: 'password', username: 'user1', email: 'user1@test.com') }
   let(:fan2) { User.create(password: 'password', username: 'user2', email: 'user2@test.com') }
   let(:category) { Category.create(title: 'New Category') }
-  let(:resource) { Resource.create(title: 'what',
-                                description: 'whatwhat',
-                                url: 'what.what.com',
-                                author_id: author.id,
-                                category_id: category.id) }
+  let(:resource) do
+    Resource.create(title: 'what',
+                    description: 'whatwhat',
+                    url: 'what.what.com',
+                    author_id: author.id,
+                    category_id: category.id)
+  end
 
   let!(:favorite) { Favorite.create(resource_id: resource.id,  fan_id: fan1.id) }
   let!(:favorite2) { Favorite.create(resource_id: resource.id, fan_id: fan2.id) }
