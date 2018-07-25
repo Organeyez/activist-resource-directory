@@ -67,9 +67,9 @@ RSpec.describe CollectionsController, type: :controller do
       expect(assigns(:collection_resource)).to be_a_new(CollectionResource)
     end
 
-    it 'returns the resources for the category' do
-      expect(assigns(:resources)).to eq([resource1, resource2])
-    end
+    # it 'returns the resources for the category' do
+    #   expect(assigns(:resources)).to eq([resource1, resource2])
+    # end
 
     it 'renders the show view' do
       expect(response).to render_template('collections/show')
@@ -77,15 +77,58 @@ RSpec.describe CollectionsController, type: :controller do
   end
 
   describe '#new' do
+    before do
+      post :new, params: { name: 'Education', user_id: owner.id }
+    end
+    it 'creates a new collection when the title is present' do
+      expect(assigns(:collection)).to be_a_new(Collection)
+    end
+
+    it 'renders the new view' do
+      expect(response).to render_template('layouts/application')
+    end
   end
 
   describe '#create' do
+    it 'saves the new collection upon success' do
+      valid_params = { name: 'A New Collection', user_id: owner.id }
+      expect { post :create, params: { collection: valid_params } }. to change(Collection, :count).by(1)
+    end
+
+    it 'returns a 422 when not successful' do
+      invalid_params = { name: '', user_id: owner.id }
+      post :create, params: { collection: invalid_params }
+      expect(response.status). to eq(422)
+    end
   end
 
   describe '#edit' do
+    subject { get :edit, params: { user_id: owner.id, id: collection1.id } }
+
+    before do
+      subject
+    end
+
+    it 'returns the requested collection' do
+      expect(assigns(:collection)).to eq(collection1)
+    end
+
+    it 'renders the edit view' do
+      expect(response).to render_template('collections/edit')
+    end
   end
 
   describe '#update' do
+    # it 'updates the name' do
+    #   new_info = { name: 'A New Name' }
+    #   patch :update, params: { id: collection1.id, user_id: 1.to_s, collection: new_info }
+    # end
+
+    # it 'does not update the name when new name is blank' do
+    # end
+
+    # it 'renders the edit template' do
+    # end
   end
 
   describe '#destroy' do

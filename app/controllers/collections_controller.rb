@@ -44,7 +44,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @collection.update_attributes(collection_params)
     if @collection.save
-      redirect_to request.referer, notice: "Collection was successfully updated"
+      redirect_to user_collections_path(current_user), notice: "Collection was successfully updated"
     else
       @errors = @collection.errors.full_messages
       render :edit
