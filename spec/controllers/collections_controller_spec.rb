@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe CollectionsController, type: :controller do
   let(:owner) { User.create(password: 'password', username: 'owner1', email: 'owner1@test.com') }
   let(:some_other_user) { User.create(password: 'password', username: 'not_owner', email: 'not_wner1@test.com') }
-  let(:collection1) { Collection.create(name: 'Collection' ,owner_id: owner.id) }
-  let(:collection2) { Collection.create(name: 'Another Collection' ,owner_id: owner.id) }
-  let(:collection3) { Collection.create(name: 'And another!' ,owner_id: some_other_user.id) }
+  let!(:collection1) { Collection.create(name: 'Collection' ,owner_id: owner.id) }
+  let!(:collection2) { Collection.create(name: 'Another Collection' ,owner_id: owner.id) }
+  let!(:collection3) { Collection.create(name: 'And another!' ,owner_id: some_other_user.id) }
   let(:category1) { Category.create(title: 'Environment') }
-  let(:resource1) do
+  let!(:resource1) do
     Resource.create(title: 'what is happening',
                     description: 'whatwhatwhat',
                     url: 'what.what.com',
@@ -15,16 +15,13 @@ RSpec.describe CollectionsController, type: :controller do
                     category_id: category1.id)
   end
 
-  let(:resource2) do
+  let!(:resource2) do
     Resource.create(title: 'where is stuff happening',
                     description: 'whatwhat',
                     url: 'where.what.com',
                     author_id: owner.id,
                     category_id: category1.id)
   end
-
-  let(:collection_resource1) { CollectionResource.create(collection_resource: collection1, collection_id: collection1.id, resource_id: resource1) }
-  let(:collection_resource2) { CollectionResource.create(collection_resource: collection1, collection_id: collection1.id, resource_id: resource2) }
 
   describe '#index' do
     subject { get :index, params: { user_id: owner.id } }
@@ -45,9 +42,13 @@ RSpec.describe CollectionsController, type: :controller do
   end
 
   describe '#show' do
+    let!(:collection_resource1) { CollectionResource.create(collection_id: collection1.id, resource_id: resource1) }
+    let!(:collection_resource2) { CollectionResource.create(collection_id: collection1.id, resource_id: resource2) }
+
     subject { get :show, params: { user_id: owner.id, id: collection1.id } }
 
     before do
+      allow(controller).to receive(:current_user).and_return(owner)
       subject
     end
 
@@ -67,9 +68,9 @@ RSpec.describe CollectionsController, type: :controller do
       expect(assigns(:collection_resource)).to be_a_new(CollectionResource)
     end
 
-    # it 'returns the resources for the category' do
-    #   expect(assigns(:resources)).to eq([resource1, resource2])
-    # end
+    it 'returns the resources for the category' do
+      expect(assigns(:resources)).to eq([resource1, resource2])
+    end
 
     it 'renders the show view' do
       expect(response).to render_template('collections/show')
@@ -90,15 +91,19 @@ RSpec.describe CollectionsController, type: :controller do
   end
 
   describe '#create' do
-    it 'saves the new collection upon success' do
-      valid_params = { name: 'A New Collection', user_id: owner.id }
-      expect { post :create, params: { collection: valid_params } }. to change(Collection, :count).by(1)
+    before do
+      allow(controller).to receive(:current_user).and_return(owner)
     end
 
-    it 'returns a 422 when not successful' do
-      invalid_params = { name: '', user_id: owner.id }
-      post :create, params: { collection: invalid_params }
-      expect(response.status). to eq(422)
+    it 'saves the new collection upon success' do
+      valid_params = { name: 'A New Collection', owner_id: owner.id }
+      expect { post :create, params: { user_id: owner.id, collection: valid_params } }. to change(Collection, :count).by(1)
+    end
+
+    it 'returns a 302 when not successful' do
+      invalid_params = { name: 23, owner_id: owner.id }
+      post :create, params: { user_id: owner.id, collection: invalid_params }
+      expect(response.status). to eq(302)
     end
   end
 
@@ -119,18 +124,34 @@ RSpec.describe CollectionsController, type: :controller do
   end
 
   describe '#update' do
-    # it 'updates the name' do
-    #   new_info = { name: 'A New Name' }
-    #   patch :update, params: { id: collection1.id, user_id: 1.to_s, collection: new_info }
-    # end
+    before do
+      allow(controller).to receive(:current_user).and_return(owner)
+    end
 
-    # it 'does not update the name when new name is blank' do
-    # end
+    context 'with good data' do
+      it 'updates the collection and redirects' do
+        patch :update, params: { user_id: owner.id, id: collection2.id, collection: { name: 'A New Name'} }
+        expect(collection2.reload.name).to eq('A New Name')
+        expect(response).to be_redirect
+      end
+    end
 
-    # it 'renders the edit template' do
-    # end
+    context 'with bad data' do
+      it 'does not change the collection, and re-renders the form' do
+        patch :update, params: { user_id: owner.id, id: collection2.id, collection: { name: '' } }
+        expect(response).not_to be_redirect
+      end
+    end
   end
 
   describe '#destroy' do
+    before do
+      allow(controller).to receive(:current_user).and_return(owner)
+    end
+
+    it 'deletes the correct collection and redirects' do
+      expect { delete :destroy, params: { user_id: owner.id, id: collection2.id } }. to change(Collection, :count).by(-1)
+      expect(response).to be_redirect
+    end
   end
 end
