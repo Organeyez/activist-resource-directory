@@ -82,7 +82,7 @@ RSpec.describe CategoriesController, type: :controller do
   describe '#create' do
     it 'saves the new category upon success' do
       valid_params = { title: 'A New Category' }
-      expect { post :create, params: { category: valid_params } }. to change(Category, :count).by(1)
+      expect { post :create, params: { category: valid_params } }.to change(Category, :count).by(1)
     end
 
     it 'returns a 422 when not successful' do
