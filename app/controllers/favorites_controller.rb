@@ -10,13 +10,18 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = current_user.favorites.find_or_create_by(resource_id: params[:resource_id])
+    @favorite = current_user.favorites.find_or_create_by(resource_id: params[:resource_id], fan_id: params[:fan_id])
     redirect_to user_favorites_path
   end
 
   def destroy
-    @favorite = current_user.favorites.find_by(resource_id: params[:resource_id])
+    @favorite = current_user.favorites.find_by(resource_id: params[:resource_id], fan_id: params[:fan_id])
     @favorite.destroy
     redirect_to user_favorites_path
+  end
+
+  private
+  def collection_params
+    params.require(:favorite).permit(:resource_id, :fan_id)
   end
 end

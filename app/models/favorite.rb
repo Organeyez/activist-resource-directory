@@ -6,4 +6,5 @@ class Favorite < ApplicationRecord
   # has_many  :collection_resources
 
   validates :resource_id, :fan_id, presence: true
+  validates_uniqueness_of :resource_id, scope: [:fan_id]
 end

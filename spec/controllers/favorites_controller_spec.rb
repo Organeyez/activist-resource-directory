@@ -53,17 +53,24 @@ end
 
     context 'when the favorite does not already exist' do
       it 'creates a new favorite' do
-        expect { post :create, params: { user_id: user.id, favorite: { resource_id: resource3.id, fan_id: user.id } } }.to change(Favorite, :count).by(1)
+        expect { post :create, params: { resource_id: resource3.id, user_id: user.id } }.to change(Favorite, :count).by(1)
+        expect(response).to redirect_to user_favorites_path
       end
     end
 
-    context 'when the favorite exists' do
-      it 'update the favorite and does not create a new one' do
-        expect { post :create, params: { user_id: user.id, favorite: { resource_id: resource1.id, fan_id: user.id } } }.not_to change(Favorite, :count).by(1)
+    context 'when the favorite already exists' do
+      it 'creates a new favorite' do
+        expect { post :create, params: { resource_id: resource2.id, user_id: user.id } }.not_to change(Favorite, :count)
+        expect(response).to redirect_to user_favorites_path
       end
     end
   end
 
   describe '#destroy' do
+    it 'deletes the favorite' do
+      expect { post :destroy, params: { id: resource2.id, user_id: user.id } }.to change(Favorite, :count).by(1)
+      expect(current_user.favorited_resources).not to include(resource2)
+      expect(response).to redirect_to user_favorites_path
+    end
   end
 end
