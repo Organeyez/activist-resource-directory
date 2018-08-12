@@ -8,6 +8,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @user = @collection.owner
     @collection_resources = CollectionResource.where(collection_id: @collection.id)
+    @collection_resource ||=CollectionResource.new
     @resources = @collection.resources
     respond_to do |f|
        f.html { render :show}

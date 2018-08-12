@@ -3,9 +3,6 @@ require 'rails_helper'
 RSpec.describe CollectionsController, type: :controller do
   let(:owner) { User.create(password: 'password', username: 'owner1', email: 'owner1@test.com') }
   let(:some_other_user) { User.create(password: 'password', username: 'not_owner', email: 'not_wner1@test.com') }
-  let!(:collection1) { Collection.create(name: 'Collection' ,owner_id: owner.id) }
-  let!(:collection2) { Collection.create(name: 'Another Collection' ,owner_id: owner.id) }
-  let!(:collection3) { Collection.create(name: 'And another!' ,owner_id: some_other_user.id) }
   let(:category1) { Category.create(title: 'Environment') }
   let!(:resource1) do
     Resource.create(title: 'what is happening',
@@ -22,6 +19,11 @@ RSpec.describe CollectionsController, type: :controller do
                     author_id: owner.id,
                     category_id: category1.id)
   end
+  let!(:collection1) { Collection.create(name: 'Collection' ,owner_id: owner.id) }
+  let!(:collection2) { Collection.create(name: 'Another Collection' ,owner_id: owner.id) }
+  let!(:collection3) { Collection.create(name: 'And another!' ,owner_id: some_other_user.id) }
+  let!(:collection_resource1) { CollectionResource.create(collection_id: collection1.id, resource_id: resource1.id) }
+  let!(:collection_resource2) { CollectionResource.create(collection_id: collection1.id, resource_id: resource2.id) }
 
   describe '#index' do
     subject { get :index, params: { user_id: owner.id } }
@@ -42,8 +44,6 @@ RSpec.describe CollectionsController, type: :controller do
   end
 
   describe '#show' do
-    let!(:collection_resource1) { CollectionResource.create(collection_id: collection1.id, resource_id: resource1) }
-    let!(:collection_resource2) { CollectionResource.create(collection_id: collection1.id, resource_id: resource2) }
 
     subject { get :show, params: { user_id: owner.id, id: collection1.id } }
 

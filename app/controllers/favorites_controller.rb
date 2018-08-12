@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = current_user.favorites.find_by(resource_id: params[:resource_id], fan_id: params[:fan_id])
+    @favorite = current_user.favorites.find(params[:id])
     @favorite.destroy
     redirect_to user_favorites_path
   end
