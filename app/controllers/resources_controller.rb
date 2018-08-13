@@ -8,18 +8,18 @@ class ResourcesController < ApplicationController
 
 	def show
 		@resource = Resource.find(params[:id])
-		@tag = Tag.new 
-		@review = Review.new 
+		@tag = Tag.new
+		@review = Review.new
 	end
 
 	def new
-		@resource = Resource.new 
+		@resource = Resource.new
 		@categories = Category.order(:title)
 	end
 
 	def create
 		@resource = current_user.posted_resources.new(resource_params)
-		@categories = Category.order(:title) 
+		@categories = Category.order(:title)
 		if @resource.save
 			redirect_to resource_path(@resource), notice: "Your Resource was successfully created. Please double-check that your link works correctly"
 		else
@@ -49,12 +49,11 @@ class ResourcesController < ApplicationController
 	def destroy
 		@resource = Resource.find(params[:id])
 		@resource.destroy
-		redirect_to user_path(current_user), notice: "Resource was successfully destroyed" 
+		redirect_to user_path(current_user), notice: "Resource was successfully destroyed"
 	end
 
 	private
 	def resource_params
 		params.require(:resource).permit(:title, :description, :url, :category_id)
 	end
-
 end

@@ -13,6 +13,7 @@ services:
       context: .
       args:
         - ENV=development
+    env_file: .env
     command: "bundle exec rackup --port 3000 --host 0.0.0.0"
     volumes:
       - "./:/opt/yard/"
